@@ -1,3 +1,5 @@
+package ut7.agenda.test;
+
 import java.util.ArrayList;
 
 public class TestProfesionalPersonal {
