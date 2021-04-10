@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
  * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
-public class Personal extends Contacto extends Contacto{
+public class Personal extends Contacto{
 	
 	private Relacion rel;
 	private LocalDate fecha;
