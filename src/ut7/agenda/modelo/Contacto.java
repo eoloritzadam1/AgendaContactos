@@ -1,5 +1,11 @@
 package ut7.agenda.modelo;
 
+import java.util.Collections;
+
+/**
+ * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ */
+
 public class Contacto {
 	private String nombre;
 	private String apellidos;
@@ -51,5 +57,12 @@ public class Contacto {
 		return email.hashCode();
 
 	}
-
+	
+	/*
+	 * Devuelve la primera letra del contacto
+	 */
+	public char getPrimeraLetra() {
+		return apellidos.charAt(0);
+		
+	}
 }

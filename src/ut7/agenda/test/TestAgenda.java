@@ -3,6 +3,10 @@ package ut7.agenda.test;
 import java.time.LocalDate;
 import java.util.Map;
 
+/**
+ * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ */
+
 public class TestAgenda {
 
 	public static void main(String[] args) {

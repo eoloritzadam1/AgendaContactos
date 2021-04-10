@@ -2,6 +2,10 @@ package ut7.agenda.test;
 
 import java.util.ArrayList;
 
+/**
+ * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ */
+
 public class TestProfesionalPersonal {
 
 	public static void main(String[] args) {

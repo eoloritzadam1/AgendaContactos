@@ -4,12 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * 
- * @author Elorri Oloritz
- *
+ * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
-public class Personal extends Contacto {
+public class Personal extends Contacto extends Contacto{
 	
 	private Relacion rel;
 	private LocalDate fecha;
