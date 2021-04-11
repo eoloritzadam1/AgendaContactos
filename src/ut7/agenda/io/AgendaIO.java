@@ -1,18 +1,47 @@
 package ut7.agenda.io;
 
+import ut7.agenda.modelo.AgendaContactos;
+import ut7.agenda.modelo.Contacto;
+import ut7.agenda.modelo.Personal;
+import ut7.agenda.modelo.Profesional;
+import ut7.agenda.modelo.Relacion;
+
 /**
  * Utilidades para cargar la agenda
  */
 public class AgendaIO {
 
 	public static void importar(AgendaContactos agenda) {
-
 	}
 
 	private static Contacto parsearLinea(String linea) {
+		
+		String[] cont = linea.split(",");
+		int tipo = Integer.parseInt(cont[0].trim());
+		String nombre = cont[1].trim();
+		String apellidos = cont[2].trim();
+		String telefono = cont[3].trim();
+		String email = cont[4].trim();
+		
+		if (tipo == 1) {
+			// Profesional pro = new Profesional(nombre,apellidos,telefono,email);
+			// return pro;
+		}
+		else {
+			String fecha = cont[5].trim();
+			Relacion rel =  null;
+			for (Relacion r : Relacion.values()) {
+				if (r.equals(cont[6].trim().toUpperCase())) {
+					rel = r;
+				}
+			}
+			Personal per = new Personal(nombre,apellidos,telefono,email,rel,fecha);
+			return per;
+			}
 		return null;
-
-	}
+		
+		}
+	
 
 	/**
 	 * 
@@ -46,5 +75,6 @@ public class AgendaIO {
 				"  2, adur ,  martin merino ,  611112113 , adurmartinme@gmail.com ,  14/02/2003 , amigos" };
 
 	}
+	
 
 }
