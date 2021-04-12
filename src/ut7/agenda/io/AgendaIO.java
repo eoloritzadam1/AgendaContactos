@@ -12,6 +12,11 @@ import ut7.agenda.modelo.Relacion;
 public class AgendaIO {
 
 	public static void importar(AgendaContactos agenda) {
+		String[] lineas = obtenerLineasDatos();
+		for (String linea : lineas) {
+			Contacto cont = parsearLinea(linea);
+			agenda.añadirContacto(cont);
+		}
 	}
 
 	private static Contacto parsearLinea(String linea) {
@@ -24,8 +29,9 @@ public class AgendaIO {
 		String email = cont[4].trim();
 		
 		if (tipo == 1) {
-			// Profesional pro = new Profesional(nombre,apellidos,telefono,email);
-			// return pro;
+			String empresa = cont[5].trim();
+			Profesional pro = new Profesional(nombre,apellidos,telefono,email,empresa);
+			return pro;
 		}
 		else {
 			String fecha = cont[5].trim();
@@ -38,8 +44,6 @@ public class AgendaIO {
 			Personal per = new Personal(nombre,apellidos,telefono,email,rel,fecha);
 			return per;
 			}
-		return null;
-		
 		}
 	
 

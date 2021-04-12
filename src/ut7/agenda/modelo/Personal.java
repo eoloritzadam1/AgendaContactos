@@ -65,4 +65,5 @@ public class Personal extends Contacto{
 		return str;
 	}
 
+
 }

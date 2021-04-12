@@ -6,7 +6,7 @@ import java.util.Collections;
  * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
-public class Contacto {
+public abstract class Contacto implements Comparable<Contacto>{
 	private String nombre;
 	private String apellidos;
 	private String telefono;
@@ -55,7 +55,6 @@ public class Contacto {
 	@Override
 	public int hashCode() {
 		return email.hashCode();
-
 	}
 	
 	/*
@@ -64,5 +63,54 @@ public class Contacto {
 	public char getPrimeraLetra() {
 		return apellidos.charAt(0);
 		
+	}
+	
+	public abstract String firma();
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contacto other = (Contacto) obj;
+		if (apellidos == null) {
+			if (other.apellidos != null)
+				return false;
+		} else if (!apellidos.equals(other.apellidos))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (telefono == null) {
+			if (other.telefono != null)
+				return false;
+		} else if (!telefono.equals(other.telefono))
+			return false;
+		return true;
+	}
+	
+	@Override
+	public int compareTo(Contacto c) {
+		int comp = this.nombre.compareToIgnoreCase(c.getNombre());
+		if (comp == 0) {
+			comp = this.apellidos.compareToIgnoreCase(c.getApellidos());
+		}
+		if (comp == 0) {
+			comp = this.telefono.compareToIgnoreCase(c.getTelefono());
+		}
+		if (comp == 0) {
+			comp = this.email.compareToIgnoreCase(c.getEmail());
+		}
+		return comp;
 	}
 }

@@ -14,7 +14,7 @@ public class AgendaContactos {
 
 	}
 
-	public void añadirContacto() {
+	public void añadirContacto(Contacto cont) {
 
 	}
 
@@ -40,7 +40,6 @@ public class AgendaContactos {
 
 	public List<Personal> personalesEnLetra(char letra) {
 
-		return null;
 	}
 
 	public List<Personal> felicitar() {

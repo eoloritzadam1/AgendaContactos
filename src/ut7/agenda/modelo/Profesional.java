@@ -74,6 +74,7 @@ public class Profesional extends Contacto {
 		return str + "Profesional [nombreEmpresa=" + 
 				nombreEmpresa + "]";
 	}
+
 	
 	
 }
