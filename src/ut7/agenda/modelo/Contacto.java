@@ -99,9 +99,18 @@ public abstract class Contacto implements Comparable<Contacto>{
 		return true;
 	}
 	
-	@Override
+	/**
+	 * Compara un contacto primero los apellidos después el nombre 
+	 * si coincide devuelve 0
+	 */
 	public int compareTo(Contacto c) {
-		int comp = this.nombre.compareToIgnoreCase(c.getNombre());
+		if(apellidos.equalsIgnoreCase(c.apellidos)) {
+			if(nombre.equalsIgnoreCase(c.nombre)) {
+				return 0;
+			}
+		}
+		return -1;
+		/*int comp = this.nombre.compareToIgnoreCase(c.getNombre());
 		if (comp == 0) {
 			comp = this.apellidos.compareToIgnoreCase(c.getApellidos());
 		}
@@ -111,6 +120,17 @@ public abstract class Contacto implements Comparable<Contacto>{
 		if (comp == 0) {
 			comp = this.email.compareToIgnoreCase(c.getEmail());
 		}
-		return comp;
+		return comp;*/
 	}
+
+	/**
+	 * toString de la clase Contacto
+	 */
+	public String toString() {
+		return apellidos.toUpperCase() + ", " + nombre.toUpperCase() +
+		" (" + getClass() + ") /n" + "Tfno: " + telefono + " | email: " + 
+				email + "/nEmpresa: " ;
+	}
+	
+	
 }
