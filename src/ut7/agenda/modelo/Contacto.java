@@ -129,7 +129,7 @@ public abstract class Contacto implements Comparable<Contacto>{
 	public String toString() {
 		return apellidos.toUpperCase() + ", " + nombre.toUpperCase() +
 		" (" + getClass() + ") /n" + "Tfno: " + telefono + " | email: " + 
-				email + "/nEmpresa: " ;
+				email + "/nEmpresa: " + ;
 	}
 	
 	
