@@ -1,5 +1,6 @@
 package ut7.agenda.modelo;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -32,12 +33,18 @@ public class AgendaContactos {
 		total++;
 	}
 
-	public void contactosEnLetra(String letra) {
-		
+	public Set<Contacto> contactosEnLetra(String letra) {
+		char l = letra.charAt(0);
+		if (!agenda.containsKey(l)) {
+			return null;
+		}
+		else {
+			return agenda.get(l);
+		}
 	}
 
-	public void totalContactos() {
-		System.out.println(total); 
+	public int totalContactos() {
+		return total;
 	}
 
 	@Override
@@ -62,7 +69,7 @@ public class AgendaContactos {
 	}
 
 	public List<Personal> personalesEnLetra(char letra) {
-		ArrayList<Personal> resul = new ArrayList<>();
+		/*ArrayList<Personal> resul = new ArrayList<>();
 		if (!agenda.containsKey(letra)) {
 			resul = null;
 		}
@@ -73,6 +80,15 @@ public class AgendaContactos {
 					}
 			}
 		}
+		return resul;
+		*/
+		ArrayList<Personal> resul = new ArrayList<>();
+		for (Contacto c : contactosEnLetra(Character.toString(letra))){
+			if (c instanceof Personal) {
+				resul.add((Personal) c);
+			}
+		}
+
 		return resul;
 	}
 
@@ -92,14 +108,33 @@ public class AgendaContactos {
 		return resul;
 	}
 
-	public void personalesPorRelacion() {
-
+	public Map<Relacion, List<String>> personalesPorRelacion() {
+		Map<Relacion, List<String>> resul = new TreeMap<>();
+		Iterator<Map.Entry<Character, Set<Contacto>>> it = agenda.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<Character, Set<Contacto>> e = it.next();
+			for (Contacto c : e.getValue()) {
+				if (c instanceof Personal) {
+					String cadena = c.getNombre() + ' ' + c.getApellidos();
+					Relacion rel = ((Personal) c).getRel();
+					if (resul.containsKey(rel)) {
+						resul.get(rel).add(cadena);
+					} 
+					else {
+						List<String> contactos = new ArrayList<>();
+						contactos.add(cadena);
+						resul.put(rel,contactos);
+					}
+				}
+			}
+		}
+		return resul;
 	}
 
 	public List<Personal> personalesOrdenadosPorFechaNacimiento(char letra) {
-
-		return null;
-
+		List<Personal> resul = personalesEnLetra(letra);
+		Collections.sort(resul, new ComparadorFechaNacimiento());
+		return resul;
 	}
 
 }

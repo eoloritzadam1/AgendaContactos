@@ -27,6 +27,14 @@ public class Personal extends Contacto{
 		return fecha.getMonth() == LocalDate.now().getMonth() &&
 				fecha.getDayOfMonth() == LocalDate.now().getDayOfMonth();
 	}
+	
+	public Relacion getRel() {
+		return rel;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
 
 	@Override
 	public String toString() {
