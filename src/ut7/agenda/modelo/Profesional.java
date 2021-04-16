@@ -71,8 +71,7 @@ public class Profesional extends Contacto {
 	 */
 	public String toString() {
 		String str = super.toString();
-		return str + "Profesional [nombreEmpresa=" + 
-				nombreEmpresa + "]";
+		return str + "\nEmpresa: " + nombreEmpresa;
 	}
 
 	

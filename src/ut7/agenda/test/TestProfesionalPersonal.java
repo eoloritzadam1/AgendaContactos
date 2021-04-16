@@ -1,6 +1,12 @@
 package ut7.agenda.test;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import ut7.agenda.modelo.Contacto;
+import ut7.agenda.modelo.Personal;
+import ut7.agenda.modelo.Profesional;
+import ut7.agenda.modelo.Relacion;
 
 /**
  * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
@@ -38,26 +44,26 @@ public class TestProfesionalPersonal {
 		List<Contacto> personales = new ArrayList<>();
 		addContacto(personales,
 				new Personal("Elena", "Bueno Ganuza", "6786547699",
-						"ebuenogan@gmail.com", "17/03/2000", Relacion.AMIGOS));
+						"ebuenogan@gmail.com", Relacion.AMIGOS, "17/03/2000"));
 		addContacto(personales,
 				new Personal("Amaia", "Romero Sein", "642222343",
-						"aromerosein@gmail.com", "08/03/2012",
-						Relacion.PAREJA));
+						"aromerosein@gmail.com", Relacion.PAREJA,
+						"08/03/2012"));
 		addContacto(personales,
 				new Personal("Ignacio", "Anto roth", "688912799",
-						"iantoroth@gmail.com", "11/11/1969", Relacion.PADRE));
+						"iantoroth@gmail.com", Relacion.PADRE, "11/11/1969"));
 		addContacto(personales,
 				new Personal("Berta", "andia solano", "621123345",
-						"bandiasol@gmail.com", "12/12/1999", Relacion.HIJA));
+						"bandiasol@gmail.com", Relacion.HIJA, "12/12/1999"));
 		addContacto(personales,
 				new Personal("Ignacio", "Anto roth", "688912799",
-						"iantoroth@gmail.com", "11/11/1969", Relacion.PADRE));
+						"iantoroth@gmail.com", Relacion.PADRE, "11/11/1969"));
 		System.out.println("Contactos personales");
 		mostrarContactos(personales);
 
 		separador();
 		Personal personal = new Personal("Elena", "Bueno Ganuza", "6786547699",
-				"ebuenogan@gmail.com", "17/03/2000", Relacion.AMIGOS);
+				"ebuenogan@gmail.com", Relacion.AMIGOS, "17/03/2000");
 		buscarContacto(personales, personal);
 		separador();
 
@@ -95,7 +101,7 @@ public class TestProfesionalPersonal {
 	private static void mostrarFirmaEmail(Contacto contacto) {
 		System.out.println("Mostrando la firma del email del contacto ...");
 		System.out.println(contacto);
-		System.out.println(contacto.getFirmaEmail());
+		System.out.println(contacto.getEmail());
 
 	}
 

@@ -33,14 +33,9 @@ public class AgendaContactos {
 		total++;
 	}
 
-	public Set<Contacto> contactosEnLetra(String letra) {
-		char l = letra.charAt(0);
-		if (!agenda.containsKey(l)) {
-			return null;
-		}
-		else {
-			return agenda.get(l);
-		}
+	public Set<Contacto> contactosEnLetra(char letra) {
+		Set<Contacto> resul = agenda.get(letra);
+		return resul;
 	}
 
 	public int totalContactos() {
@@ -49,8 +44,19 @@ public class AgendaContactos {
 
 	@Override
 	public String toString() {
-
-		return null;
+		String str = "AGENDA DE CONTACTOS\n";
+		Iterator<Map.Entry<Character, Set<Contacto>>> it1 = agenda.entrySet().iterator();
+		while (it1.hasNext()) {
+			Map.Entry<Character, Set<Contacto>> e = it1.next();
+			str += "\n" + e.getKey() + " (" + contactosEnLetra(e.getKey()).size() + 
+					" contacto/s)";
+			Iterator<Contacto> it2 = e.getValue().iterator();
+			while (it2.hasNext()) {
+				Contacto c = it2.next();
+				str += "\n" + c.toString() + "\n";
+			}
+		}
+		return str;
 	}
 
 	public List<Contacto> buscarContactos(String texto) {
@@ -59,7 +65,8 @@ public class AgendaContactos {
 		while (it.hasNext()) {
 			Map.Entry<Character, Set<Contacto>> e = it.next();
 			for (Contacto c : e.getValue()) {
-				if (c.getNombre().contains(texto) || c.getApellidos().contains(texto)) {
+				if (c.getNombre().contains(texto.toUpperCase()) ||
+						c.getApellidos().contains(texto.toUpperCase())) {
 					resul.add(c);
 				}
 			}
@@ -83,12 +90,13 @@ public class AgendaContactos {
 		return resul;
 		*/
 		ArrayList<Personal> resul = new ArrayList<>();
-		for (Contacto c : contactosEnLetra(Character.toString(letra))){
-			if (c instanceof Personal) {
-				resul.add((Personal) c);
+		if (agenda.containsKey(letra)) {
+			for (Contacto c : contactosEnLetra(letra)){
+				if (c instanceof Personal) {
+					resul.add((Personal) c);
+				}
 			}
 		}
-
 		return resul;
 	}
 

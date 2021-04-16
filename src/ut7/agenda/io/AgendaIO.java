@@ -35,9 +35,9 @@ public class AgendaIO {
 		}
 		else {
 			String fecha = cont[5].trim();
-			Relacion rel =  null;
+			Relacion rel = Relacion.AMIGOS;
 			for (Relacion r : Relacion.values()) {
-				if (r.equals(cont[6].trim().toUpperCase())) {
+				if (r.toString().equals(cont[6].trim().toUpperCase())) {
 					rel = r;
 				}
 			}
