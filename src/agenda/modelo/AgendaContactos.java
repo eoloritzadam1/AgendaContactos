@@ -1,4 +1,4 @@
-package ut7.agenda.modelo;
+package agenda.modelo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,7 +21,7 @@ public class AgendaContactos {
 		agenda = new TreeMap<>(); //Corregido, tiene que ir en orden alfabético
 	}
 
-	public void añadirContacto(Contacto cont) {
+	public static void añadirContacto(Contacto cont) {
 		if (agenda.containsKey(cont.getPrimeraLetra())) {
 			agenda.get(cont.getPrimeraLetra()).add(cont);
 		} // primero debe comprobar si existe la letra

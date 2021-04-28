@@ -1,4 +1,4 @@
-package ut7.agenda.modelo;
+package agenda.modelo;
 import java.util.Comparator;
 
 public class ComparadorFechaNacimiento implements Comparator<Personal> {
