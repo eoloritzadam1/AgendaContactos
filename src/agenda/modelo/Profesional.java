@@ -1,7 +1,7 @@
 package agenda.modelo;
 
 /**
- * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ * @author - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
 public class Profesional extends Contacto {

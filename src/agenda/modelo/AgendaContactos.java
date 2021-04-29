@@ -8,14 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
- * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ * @author - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
 public class AgendaContactos {
-	private Map<Character, Set<Contacto>> agenda;
-	private int total = 0;
+	private static Map<Character, Set<Contacto>> agenda;
+	private static int total = 0;
 
 	public AgendaContactos() {
 		agenda = new TreeMap<>(); //Corregido, tiene que ir en orden alfabético
@@ -26,7 +27,7 @@ public class AgendaContactos {
 			agenda.get(cont.getPrimeraLetra()).add(cont);
 		} // primero debe comprobar si existe la letra
 		else {
-			HashSet<Contacto> contactos = new HashSet<>();
+			Set<Contacto> contactos = new TreeSet<>();
 			contactos.add(cont);
 			agenda.put(cont.getPrimeraLetra(), contactos);
 		}
@@ -34,6 +35,7 @@ public class AgendaContactos {
 	}
 
 	public Set<Contacto> contactosEnLetra(char letra) {
+		letra = Character.toUpperCase(letra);
 		Set<Contacto> resul = agenda.get(letra);
 		return resul;
 	}
@@ -76,21 +78,8 @@ public class AgendaContactos {
 	}
 
 	public List<Personal> personalesEnLetra(char letra) {
-		/*ArrayList<Personal> resul = new ArrayList<>();
-		if (!agenda.containsKey(letra)) {
-			resul = null;
-		}
-		else {
-			for (Contacto c : agenda.get(letra)) {
-					if (c instanceof Personal) {
-						resul.add((Personal) c);
-					}
-			}
-		}
-		return resul;
-		*/
 		ArrayList<Personal> resul = new ArrayList<>();
-		if (agenda.containsKey(letra)) {
+		if (agenda.containsKey(Character.toUpperCase(letra))) {
 			for (Contacto c : contactosEnLetra(letra)){
 				if (c instanceof Personal) {
 					resul.add((Personal) c);
@@ -107,7 +96,7 @@ public class AgendaContactos {
 			Map.Entry<Character, Set<Contacto>> e = it.next();
 			for (Contacto c : e.getValue()) {
 				if (c instanceof Personal) {
-					if (((Personal) c).esCumpleanos() == true) {
+					if (((Personal) c).esCumpleanos()) {
 						resul.add((Personal) c);
 					}
 				}

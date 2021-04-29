@@ -9,7 +9,7 @@ import agenda.modelo.Profesional;
 import agenda.modelo.Relacion;
 
 /**
- * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ * @author - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
 public class TestProfesionalPersonal {

@@ -14,6 +14,8 @@ import agenda.modelo.Relacion;
 
 /**
  * Utilidades para cargar la agenda
+ * 
+ * @author - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 public class AgendaIO {
 
@@ -23,6 +25,11 @@ public class AgendaIO {
 			Contacto cont = parsearLinea(linea);
 			agenda.añadirContacto(cont);
 		}
+	}
+
+	private static String[] obtenerLineasDatos() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private static Contacto parsearLinea(String linea) {

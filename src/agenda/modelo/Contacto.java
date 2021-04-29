@@ -3,7 +3,7 @@ package agenda.modelo;
 import java.util.Collections;
 
 /**
- * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ * @author - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
 public abstract class Contacto implements Comparable<Contacto>{

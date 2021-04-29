@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * @authors - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
+ * @author - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
 
 public class Personal extends Contacto{
