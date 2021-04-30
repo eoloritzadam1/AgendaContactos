@@ -26,7 +26,7 @@ import agenda.modelo.Relacion;
  */
 public class AgendaIO {
 
-	public void importar(String nombre) {
+	public static void importar(AgendaContactos agenda, String nombre) {
 		int contador = 1; 
 		File f = new File(nombre);
 		BufferedReader entrada = null;
