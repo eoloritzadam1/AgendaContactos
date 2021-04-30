@@ -18,7 +18,7 @@ public class TestAgenda {
 
 	public static void main(String[] args) {
 		AgendaContactos agenda = new AgendaContactos();
-		AgendaIO.importar(agenda, "prueba");
+		AgendaIO.importar(agenda, "agenda");
 		System.out.println(agenda);
 		separador();
 
