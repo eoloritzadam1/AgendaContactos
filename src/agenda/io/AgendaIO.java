@@ -1,10 +1,16 @@
 package agenda.io;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.PatternSyntaxException;
 
 import agenda.modelo.AgendaContactos;
@@ -95,7 +101,15 @@ public class AgendaIO {
 			}
 		}
 	
-	public static void exportarPersonales() {
+	public static void exportarPersonales(AgendaContactos agenda, String nombre)
+			throws IOException, NullPointerException {
+		File f = new File(nombre + ".txt");
+		PrintWriter salida = new PrintWriter(
+		new BufferedWriter(new FileWriter(f)));
 		
+		agenda.personalesPorRelacion();
+	    salida.println(agenda.toString());
+
+		salida.close();
 	}
 }
