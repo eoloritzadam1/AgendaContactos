@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.PatternSyntaxException;
@@ -107,9 +108,11 @@ public class AgendaIO {
 		PrintWriter salida = new PrintWriter(
 		new BufferedWriter(new FileWriter(f)));
 		
-		agenda.personalesPorRelacion();
-	    salida.println(agenda.toString());
-
+		Map<Relacion, List<String>> ag = agenda.personalesPorRelacion();
+	    
+		for (Map.Entry<Relacion, List<String>> entry : ag.entrySet()) {
+			salida.println(entry.getKey() + "\n     " + entry.getValue());
+		}
 		salida.close();
 	}
 }
