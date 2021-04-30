@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.regex.PatternSyntaxException;
 
 import agenda.modelo.AgendaContactos;
 import agenda.modelo.Contacto;
@@ -21,18 +22,18 @@ public class AgendaIO {
 
 	public static void importar(AgendaContactos agenda) {
 		String[] lineas = obtenerLineasDatos();
-		for (String linea : lineas) {
+		for (String linea : lineas) {{
 			Contacto cont = parsearLinea(linea);
 			agenda.añadirContacto(cont);
 		}
 	}
-
-	private static String[] obtenerLineasDatos() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static Contacto parsearLinea(String linea) {
+		/**
+		 * @throws PatternSyntaxException
+		 * @throws NumberFormatException
+		 * @throws NullPointerException
+		 */
+	private static Contacto parsearLinea(String linea) 
+	throws PatternSyntaxException, NumberFormatException, NullPointerException {
 		
 		String[] cont = linea.split(",");
 		int tipo = Integer.parseInt(cont[0].trim());
@@ -102,5 +103,5 @@ public class AgendaIO {
 
 	}
 	
-
+	public static void exportarPersonales()
 }
