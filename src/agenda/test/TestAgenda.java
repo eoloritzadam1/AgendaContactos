@@ -13,11 +13,46 @@ import agenda.modelo.Relacion;
 /**
  * @author - Elorri Oloritz, Ibai Andreu, Julen Baztarrika
  */
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
-public class TestAgenda {
+public class TestAgenda extends Application
+{
+
+	@Override
+	public void start(Stage primaryStage) {
+
+		try {
+						BorderPane root = (BorderPane) FXMLLoader
+						                .load(getClass().getResource(
+						                                "/vista/GuiAgenda.fxml"));
+//
+//			FXMLLoader loader = new FXMLLoader();
+//			loader.setLocation(
+//			                this.getClass().getResource(
+//			                                "/vista/GuiPersonas.fxml"));
+//			BorderPane root = loader.load();
+
+			Scene scene = new Scene(root, 1400, 800);
+			scene.getStylesheets().add(getClass()
+			                .getResource("/application.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Agenda");
+			primaryStage.show();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	public static void main(String[] args) {
-		AgendaContactos agenda = new AgendaContactos();
+		launch(args);
+	
+		/*AgendaContactos agenda = new AgendaContactos();
 		AgendaIO.importar(agenda, "agenda");
 		System.out.println(agenda);
 		separador();
@@ -88,7 +123,7 @@ public class TestAgenda {
 	private static void separador() {
 		System.out.println(
 				"------------------------------------------------------------");
-
+*/
 	}
 
 }
