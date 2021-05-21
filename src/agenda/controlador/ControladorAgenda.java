@@ -7,12 +7,16 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import agenda.io.AgendaIO;
 import agenda.modelo.AgendaContactos;
+import agenda.modelo.Contacto;
+import agenda.modelo.Personal;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
@@ -83,23 +87,7 @@ public class ControladorAgenda {
 	
 	public ControladorAgenda() {
 		this.agenda = new AgendaContactos();
-		this.areaTexto = new TextArea();
-		this.barraMenu = new MenuBar();
-		this.btnClear = new Button();
-		this.btnContactosFecha = new Button();
-		this.btnContactosLetra = new Button();
-		this.btnListar = new Button();
-		this.btnSalir = new Button();
-		this.itmBuscar = new MenuItem();
-		this.itmExportarPersonales = new MenuItem();
-		this.itmFelicitar = new MenuItem();
-		this.itmImportarAgenda = new MenuItem();
-		this.itmMenu = new MenuItem();
-		this.itmSalir = new MenuItem();
-		this.panelLetras = new GridPane();
-		this.rbtListarAgenda = new RadioButton();
-		this.rbtListarContacos = new RadioButton();
-		this.txtBuscar = new TextField();
+		initialize();
 		}
 	
 	@FXML
@@ -114,7 +102,13 @@ public class ControladorAgenda {
 
     @FXML
     void buscar() {
-
+    	clear();
+    	String texto = txtBuscar.getText();
+    	String str = "Contactos en la agenda que contienen '" + texto + "'";
+    	for (Contacto c : agenda.buscarContactos(texto)) {
+    		str += c.toString();
+    	}
+    	areaTexto.setText(str);
     }
 
     @FXML
@@ -145,7 +139,17 @@ public class ControladorAgenda {
 
     @FXML
     void felicitar() {
-
+    	clear();
+    	System.out.println("Fecha actual: " + LocalDate.now());
+    	if (!agenda.felicitar().isEmpty()) {
+    		System.out.println("Hay que felicitar a");
+    	    for (Personal p : agenda.felicitar()) {
+    	    	p.toString();
+    	    }
+    	}
+    	else {
+    		System.out.println("No hay que felicitar a nadie");
+    	}
     }
 
     @FXML
@@ -170,7 +174,8 @@ public class ControladorAgenda {
 
     @FXML
     void listar() {
-    	if (areaTexto.getText().isEmpty()) {
+    	clear();
+    	if (agenda == null) {
     		areaTexto.setText("Importe antes la agenda");
     	}
     	else {
@@ -190,7 +195,16 @@ public class ControladorAgenda {
 
     @FXML
     void personalesLetra() {
-    	//agenda.contactosEnLetra((char)event);
+    	if (agenda == null) {
+    		ChoiceDialog<String> choice = new ChoiceDialog<>("A","A","B","C","D","E","F","G","H",
+    				"I","J","K","L","M","N","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z");
+    		choice.setTitle("Selector de letra");
+    		choice.setHeaderText(null);
+    		choice.setContentText("Elija letra: ");
+    	
+    	
+    	
+    	}
     }
 
     @FXML
@@ -201,7 +215,23 @@ public class ControladorAgenda {
 
 	@FXML
 	public void initialize() {
-
+		this.areaTexto = new TextArea();
+		this.barraMenu = new MenuBar();
+		this.btnClear = new Button();
+		this.btnContactosFecha = new Button();
+		this.btnContactosLetra = new Button();
+		this.btnListar = new Button();
+		this.btnSalir = new Button();
+		this.itmBuscar = new MenuItem();
+		this.itmExportarPersonales = new MenuItem();
+		this.itmFelicitar = new MenuItem();
+		this.itmImportarAgenda = new MenuItem();
+		this.itmMenu = new MenuItem();
+		this.itmSalir = new MenuItem();
+		this.panelLetras = new GridPane();
+		this.rbtListarAgenda = new RadioButton();
+		this.rbtListarContacos = new RadioButton();
+		this.txtBuscar = new TextField();
 	}
 	
 
