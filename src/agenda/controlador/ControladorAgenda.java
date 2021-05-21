@@ -1,23 +1,28 @@
-package controlador;
+package agenda.controlador;
 import java.awt.Button;
 import java.awt.MenuBar;
 import java.awt.MenuItem;
 import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
+import agenda.io.AgendaIO;
 import agenda.modelo.AgendaContactos;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.GridPane;
-import jdk.tools.jlink.internal.Platform;
+import javafx.stage.FileChooser;
 /*
 public class PleaseProvideControllerClassName {
+
 
    
 
 }
 */
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class ControladorAgenda {
 	private AgendaContactos agenda; // el modelo;
@@ -79,57 +84,66 @@ public class ControladorAgenda {
 	}
 	
 	@FXML
-    void ayuda(ActionEvent event) {
+	void ayuda() {
 		
     }
 
     @FXML
-    void botonPulsar(ActionEvent event) {
+    void botonPulsar() {
 
     }
 
     @FXML
-    void buscar(ActionEvent event) {
+    void buscar() {
 
     }
 
     @FXML
-    void clear(ActionEvent event) {
+    void clear() {
 
     }
 
     @FXML
-    void exportar(ActionEvent event) {
+    void exportar() {
 
     }
 
     @FXML
-    void felicitar(ActionEvent event) {
+    void felicitar() {
 
     }
 
     @FXML
-    void importar(ActionEvent event) {
-    	agenda.importarAgenda();
+    public void importar() {
+    	FileChooser selector = new FileChooser();
+    	selector.setTitle("Abrir fichero de datos");
+    	selector.setInitialDirectory(new File("."));
+    	selector.getExtensionFilters()
+    	.addAll(new ExtensionFilter("csv",
+    	"*.csv"));
+    	File f = selector.showOpenDialog(null);
+    	if (f != null) {
+        	AgendaIO.importar(agenda, f.getName());
+    	}	
     }
 
     @FXML
-    void listar(ActionEvent event) {
+    void listar() {
 
     }
 
     @FXML
-    void personalesFecha(ActionEvent event) {
+    void personalesFecha() {
 
     }
 
     @FXML
-    void personalesLetra(ActionEvent event) {
-    	agenda.contactosEnLetra((char)event);
+    void personalesLetra() {
+    	//agenda.contactosEnLetra((char)event);
     }
 
     @FXML
-    void salir(ActionEvent event) {
+    void salir() {
     	Platform.exit();
     }
 
