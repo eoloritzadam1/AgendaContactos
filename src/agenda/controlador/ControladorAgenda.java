@@ -6,6 +6,7 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
 import agenda.io.AgendaIO;
@@ -123,7 +124,23 @@ public class ControladorAgenda {
 
     @FXML
     void exportar() {
-
+    	FileChooser selector = new FileChooser();
+    	selector.setTitle("Guardar fichero");
+    	selector.setInitialDirectory(new File("."));
+    	selector.getExtensionFilters()
+    	.addAll(new ExtensionFilter("txt",
+    	"*.txt"));
+    	File f = selector.showSaveDialog(null);
+    	try {
+    	AgendaIO.exportarPersonales(agenda, f.getName());
+    	areaTexto.setText("Exportados contactos personales");
+    	}
+    	catch (IOException e) {
+    		System.out.println(e.getMessage());
+    	}
+    	catch (NullPointerException e) {
+    		System.out.println(e.getMessage());
+    	}
     }
 
     @FXML
@@ -154,7 +171,15 @@ public class ControladorAgenda {
     @FXML
     void listar() {
     	if (areaTexto.getText().isEmpty()) {
-    		
+    		areaTexto.setText("Importe antes la agenda");
+    	}
+    	else {
+    		if (rbtListarAgenda.isSelected()) {
+    			areaTexto.setText(agenda.toString());
+    		}
+    		else {
+    			areaTexto.setText("Total contactos en la agenda: " + agenda.totalContactos());
+    		}
     	}
     }
 
