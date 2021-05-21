@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.time.format.DateTimeParseException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,8 @@ import agenda.modelo.Relacion;
  */
 public class AgendaIO {
 
-	public static void importar(AgendaContactos agenda, String nombre) {
+	public static int importar(AgendaContactos agenda, String nombre) {
+		int errores = 0;
 		int contador = 1; 
 		InputStream input = AgendaIO.class.getClassLoader()
 				 .getResourceAsStream(nombre);
@@ -47,6 +49,11 @@ public class AgendaIO {
 				}
 				catch (NumberFormatException e) {
 					System.out.println(e.getMessage());
+					errores++;
+				}
+				catch (DateTimeParseException e) {
+					System.out.println(e.getMessage());
+					errores++;
 				}
 				linea = entrada.readLine();
 
@@ -54,9 +61,11 @@ public class AgendaIO {
 		}
 		catch (FileNotFoundException e) {
 			System.out.println("Error al abrir fichero " + e.getMessage());
+			errores++;
 		}
 		catch (IOException e) {
 			System.out.println("Error al leer");
+			errores++;
 		}
 		finally {
 			try {
@@ -64,11 +73,15 @@ public class AgendaIO {
 			}
 			catch (IOException e) {
 				System.out.println("Error al cerrar");
+				errores++;
 			}
 			catch (NullPointerException e) {
 				System.out.println("Error al cerrar " + e.toString());
+				errores++;
 			}
 		}
+
+		return errores;
 
 	}
 	

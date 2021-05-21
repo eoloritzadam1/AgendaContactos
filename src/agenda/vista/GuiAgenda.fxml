@@ -8,6 +8,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="577.0" prefWidth="707.0" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="agenda.controlador.ControladorAgenda">
+<BorderPane prefHeight="577.0" prefWidth="707.0" stylesheets="@../../application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="agenda.controlador.ControladorAgenda">
    <top>
       <MenuBar prefHeight="35.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <menus>
@@ -40,7 +41,7 @@
             </Menu>
             <Menu text="Operaciones">
               <items>
-                <MenuItem  mnemonicParsing="false" onAction="#buscar" text="Buscar">
+                <MenuItem mnemonicParsing="false" onAction="#buscar" text="Buscar">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="B" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator>
@@ -139,8 +140,11 @@
                         <Insets bottom="40.0" />
                      </VBox.margin>
                   </TextField>
-                  <RadioButton mnemonicParsing="false" prefWidth="250.0" selected="true" stylesheets="@../application.css" text="Listar toda la agenda" />
-                  <RadioButton fx:id="rbtListarContacos" mnemonicParsing="false" prefWidth="250.0" stylesheets="@../application.css" text="Listar nº contactos" />
+                  <RadioButton mnemonicParsing="false" prefWidth="250.0" selected="true" stylesheets="@../application.css" text="Listar toda la agenda">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="grupo" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="rbtListarContacos" mnemonicParsing="false" prefWidth="250.0" stylesheets="@../application.css" text="Listar nº contactos" toggleGroup="$grupo" />
                   <Button mnemonicParsing="false" onAction="#listar" prefWidth="250.0" styleClass="botones" stylesheets="@../application.css" text="Listar">
                      <VBox.margin>
                         <Insets bottom="40.0" />
@@ -164,7 +168,7 @@
             </VBox>
          </left>
          <center>
-            <TextArea prefHeight="353.0" prefWidth="440.0" styleClass="text-area" stylesheets="@../application.css" BorderPane.alignment="CENTER">
+            <TextArea editable="false" prefHeight="353.0" prefWidth="440.0" styleClass="text-area" stylesheets="@../application.css" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets top="10.0" />
                </BorderPane.margin>

@@ -6,6 +6,7 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.time.format.DateTimeParseException;
 
 import agenda.io.AgendaIO;
 import agenda.modelo.AgendaContactos;
@@ -81,7 +82,24 @@ public class ControladorAgenda {
 	
 	public ControladorAgenda() {
 		this.agenda = new AgendaContactos();
-	}
+		this.areaTexto = new TextArea();
+		this.barraMenu = new MenuBar();
+		this.btnClear = new Button();
+		this.btnContactosFecha = new Button();
+		this.btnContactosLetra = new Button();
+		this.btnListar = new Button();
+		this.btnSalir = new Button();
+		this.itmBuscar = new MenuItem();
+		this.itmExportarPersonales = new MenuItem();
+		this.itmFelicitar = new MenuItem();
+		this.itmImportarAgenda = new MenuItem();
+		this.itmMenu = new MenuItem();
+		this.itmSalir = new MenuItem();
+		this.panelLetras = new GridPane();
+		this.rbtListarAgenda = new RadioButton();
+		this.rbtListarContacos = new RadioButton();
+		this.txtBuscar = new TextField();
+		}
 	
 	@FXML
 	void ayuda() {
@@ -100,7 +118,7 @@ public class ControladorAgenda {
 
     @FXML
     void clear() {
-
+		areaTexto.setText("");
     }
 
     @FXML
@@ -122,14 +140,22 @@ public class ControladorAgenda {
     	.addAll(new ExtensionFilter("csv",
     	"*.csv"));
     	File f = selector.showOpenDialog(null);
+    	int errores = 0;
     	if (f != null) {
-        	AgendaIO.importar(agenda, f.getName());
-    	}	
+        	errores = AgendaIO.importar(agenda, f.getName());
+            clear();
+            areaTexto.setText("Errores: " + errores);
+            itmImportarAgenda.setEnabled(false);
+            itmExportarPersonales.setEnabled(false);
+        }
+    		
     }
 
     @FXML
     void listar() {
-
+    	if (areaTexto.getText().isEmpty()) {
+    		
+    	}
     }
 
     @FXML
